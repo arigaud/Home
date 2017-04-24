@@ -33,10 +33,11 @@ use strict;
 use warnings;
 
 use FindBin;
-use lib "$FindBin::Bin/../";
+use lib "$FindBin::Bin";
 use VMware::VIRuntime;
 use Time::Local;
 use lib "/usr/local/nagios/libexec";
+use lib "/usr/lib/nagios/plugins";
 use utils qw ($TIMEOUT %ERRORS &print_revision &support);
 
 my %STATES = (
