@@ -186,8 +186,8 @@ foreach my $host (@$hosts)
         }
 
         $msg .= "|drift=" . $drift . "s peers=$ntp_srv_count;$warn;$crit;$peer_crit;$peer_warn\n";
-        print "$STATES{$ret}: $msg";
 }
+print "$STATES{$ret}: $msg";
 Util::disconnect();
 exit $ret;
 
