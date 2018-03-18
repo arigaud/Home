@@ -84,9 +84,9 @@ my %opts = (
 );
 
 my $list;
-my $msg;
+my $msg = "";
 my $drift;
-my $ret;
+my $ret = 3;
 
 Opts::add_options(%opts);
 Opts::parse();
@@ -189,6 +189,11 @@ foreach my $host (@$hosts)
 }
 print "$STATES{$ret}: $msg";
 Util::disconnect();
+
+if(length $msg eq 0){
+    print "UNKNOWN - Error querying ESX server '".Opts::get_option('server')."'\n";
+}
+
 exit $ret;
 
 ## subs
