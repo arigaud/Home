@@ -82,6 +82,13 @@ my %opts = (
                 help            => "Set the warning threshold for number of peers (default:1).",
                 required        => 0,
         },
+        plugin_timeout => {
+                default         => 30,
+                type            => "=i",
+                variable        => "plugin_timeout",
+                help            => "Set plugin timeout (default:30).",
+                required        => 0,
+        },
 );
 
 my $list;
@@ -106,8 +113,8 @@ my $warn = Opts::get_option('warning');
 my $crit = Opts::get_option('critical');
 my $peer_warn = Opts::get_option('peer_warning');
 my $peer_crit = Opts::get_option('peer_critical');
+my $TIMEOUT = Opts::get_option('plugin_timeout');
 
-$TIMEOUT = 3;
 # Just in case of problems, let's not hang Nagios
 $SIG{'ALRM'} = sub {
         print "UNKNOWN - Plugin Timed out\n";
@@ -219,4 +226,3 @@ sub list {
         }
         return $ntp_srv_count;
 }
-
