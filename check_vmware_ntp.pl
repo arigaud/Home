@@ -148,10 +148,10 @@ foreach my $host (@$hosts)
                 $ret = 2;
         } elsif ( abs($drift) > $warn) {
                 $msg .= $host->get_property('summary.config.name') . " is " . ($drift) . " seconds off!";
-                $ret = 1;
+                $ret = 1 if ($ret != 2);
         } else {
                 $msg .= $host->get_property('summary.config.name') . " is within allowable drift (" . ($drift) . "s)";
-                $ret = 0;
+                $ret = 0 if ($ret != 1 || $ret != 2 );
         }
 
         if ( $ntp_srv_count > $peer_warn )
